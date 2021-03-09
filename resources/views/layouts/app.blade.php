@@ -19,8 +19,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -78,9 +77,14 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 app-content">
             @yield('content')
         </main>
-    </div>
+
+        <footer class="border-top pt-3">
+            <div class="container">
+                    <p>&copy; {{ date('Y') }}</p>
+            </div>
+        </footer>
 </body>
 </html>
