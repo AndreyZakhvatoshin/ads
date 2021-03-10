@@ -7,12 +7,28 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+a {
+    color: #fffe;
+}
+
+.breadcrumb {
+    background-color: #ffffff;
+}
+.breadcrumb-item a {
+    color: black;
+}
+.breadcrumb-item.active {
+    color: $orange;
+}
 body {
+    background: #ffffff;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
-
+.navbar {
+    background: $blue;
+}
 .app-content {
     flex: 1;
 }

@@ -10002,10 +10002,31 @@ h3 {
     border-color: #dee2e6;
   }
 }
+a {
+  color: #fffe;
+}
+
+.breadcrumb {
+  background-color: #ffffff;
+}
+
+.breadcrumb-item a {
+  color: black;
+}
+
+.breadcrumb-item.active {
+  color: #f6993f;
+}
+
 body {
+  background: #ffffff;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.navbar {
+  background: #3490dc;
 }
 
 .app-content {

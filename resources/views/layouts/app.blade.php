@@ -20,7 +20,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ __('LaravelAds') }}
@@ -77,8 +77,14 @@
             </div>
         </nav>
 
-        <main class="py-4 app-content">
-            @yield('content')
+        <main class="py-1 app-content">
+            <div class="container">
+                @section('breadcrumbs', Breadcrumbs::render())
+                @yield('breadcrumbs')
+                @include('layouts.partials.flash')
+                @yield('content')
+            </div>
+
         </main>
 
         <footer class="border-top pt-3">
