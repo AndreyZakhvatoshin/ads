@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -13,6 +14,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const STATUS_WAIT = 'wait';
     const STATUS_ACTIVE = 'active';
+    const ROLE_USER = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -43,4 +46,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function new($name, $email): self
+    {
+        return static::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => bcrypt(Str::random()),
+            'role' => self::ROLE_USER,
+        ]);
+    }
 }
