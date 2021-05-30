@@ -16,6 +16,14 @@
         <span class="invalid-feedback"><strong>{{ $errors->first('email') }}</strong></span>
       @endif
     </div>
+    <div class="mb-3">
+        <label for="role">тип пользователя</label>
+        <select name="role" class="form-select" required aria-label="select example">
+          <option value="user">Пользователь</option>
+          <option value="admin">Администратор</option>
+        </select>
+        <div class="invalid-feedback">Пример обратной связи неверного выбора </div>
+      </div>
     <button type="submit" class="btn btn-primary">Создать</button>
 </form>
 @endsection
