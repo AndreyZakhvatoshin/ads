@@ -15,6 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
     const STATUS_WAIT = 'wait';
     const STATUS_ACTIVE = 'active';
     const ROLE_USER = 'user';
+    const ROLE_ADMIN = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -52,8 +53,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return static::create([
             'name' => $name,
             'email' => $email,
-            'password' => bcrypt(Str::random()),
+            'password' => bcrypt('password'),
             'role' => self::ROLE_USER,
         ]);
+    }
+
+    public static function getRoles()
+    {
+        return [
+            self::ROLE_USER => 'Пользователь',
+            self::ROLE_ADMIN => 'Администратор',
+        ];
     }
 }
