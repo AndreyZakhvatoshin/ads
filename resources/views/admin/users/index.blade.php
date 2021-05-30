@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Добавить пользователя</a>
-        @include('admin.user._nav')
+        @include('admin.users._nav')
         <table class="table">
             <thead>
               <tr>
