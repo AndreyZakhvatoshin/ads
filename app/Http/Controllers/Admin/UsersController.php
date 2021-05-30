@@ -9,6 +9,7 @@ use Crypt;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -20,7 +21,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'desc')->paginate(20);
-        return view('admin.user.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     /**
@@ -30,7 +31,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -53,30 +54,26 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user.show', ['user' => $user]);
+        return view('admin.users.show', ['user' => $user]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit(User $user)
     {
-        //
+        $roles = User::getRoles();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, User $user)
     {
-        //
+        $data = $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,id,' . $user->id,
+            'role' => ['required', 'string', Rule::in([User::ROLE_ADMIN, User::ROLE_USER])],
+        ]);
+        $user->update($data);
+        return redirect()->route('admin.users.show', $user);
     }
 
     /**
@@ -88,6 +85,6 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index')->with('success', 'Пользователь удален');
+        return redirect()->route('admin.users.index')->with('success', "Пользователь {$user->name} удален");
     }
 }
