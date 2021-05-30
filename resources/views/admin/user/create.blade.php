@@ -2,6 +2,7 @@
 @section('content')
 @include('admin.user._nav')
 <form method="POST" action="{{ route('admin.users.store') }}">
+    @csrf
     <div class="mb-3">
       <label for="name" class="form-label">Имя</label>
       <input name="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" required>
