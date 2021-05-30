@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
+use Crypt;
+use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -37,7 +41,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::new($request['name'], $request['email']);
+        return redirect()->route('admin.users.index')->with('success', 'Пользователь добавлен');
     }
 
     /**
