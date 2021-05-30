@@ -30,6 +30,10 @@ Breadcrumbs::for('admin.users.show', function ($trail, User $user) {
     $trail->parent('admin.users.index');
     $trail->push($user->name, route('admin.users.show', $user));
 });
+Breadcrumbs::for('admin.users.edit', function ($trail, User $user) {
+    $trail->parent('admin.users.index');
+    $trail->push($user->name, route('admin.users.edit', $user));
+});
 Breadcrumbs::for('admin.users.create', function ($trail) {
     $trail->parent('admin.users.index');
     $trail->push('Добавление пользователя', route('admin.users.create'));
