@@ -65,9 +65,11 @@
                                     <a class="dropdown-item" href="{{ route('cabinet') }}">
                                         {{ __('Кабинет') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.home') }}">
-                                        {{ __('Администрирование') }}
-                                    </a>
+                                    @if (Auth::user()->role === 'admin')
+                                        <a class="dropdown-item" href="{{ route('admin.home') }}">
+                                            {{ __('Администрирование') }}
+                                        </a>
+                                    @endif
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
