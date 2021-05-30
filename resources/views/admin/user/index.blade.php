@@ -9,6 +9,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Имя</th>
                 <th scope="col">Email</th>
+                <th scope="col">Роль</th>
               </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                         <td scope="row">{{ $user->id }}</td>
                         <td><a class="link" href="{{ route('admin.users.show', $user) }}">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->role }}</td>
                     </tr>
                 @endforeach
             </tbody>
