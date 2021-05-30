@@ -6,14 +6,17 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -25,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cabinet';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -56,9 +59,9 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request)));
 
-        $this->guard()->login($user);
+        //$this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
             return $response;
@@ -88,7 +91,7 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        //
+        $request->session()->flash('success', $user->name . ', проверьте почту');
     }
 
     /**
@@ -97,15 +100,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(RegisterRequest $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'verrify_code' => Str::random(),
-            'status' => User::STATUS_WAIT,
-        ]);
+        $user = User::create($request->all());
+
+        //Mail::to($user->email)->send(new VerifyMail($user));
+
+        return $user;
     }
 
     public function redirectPath()
@@ -114,6 +115,6 @@ class RegisterController extends Controller
             return $this->redirectTo();
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
     }
 }

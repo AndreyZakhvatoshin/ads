@@ -47,7 +47,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Регистрация') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ ('Регистрация') }}</a>
                                 </li>
                             @endif
                         @else
@@ -64,6 +64,9 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('cabinet') }}">
                                         {{ __('Кабинет') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('admin.home') }}">
+                                        {{ __('Администрирование') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -88,7 +91,7 @@
         </main>
 
         <footer class="border-top pt-3">
-            <div class="container">
+            <div class="container footer-container">
                     <p>&copy; {{ date('Y') }}</p>
             </div>
         </footer>

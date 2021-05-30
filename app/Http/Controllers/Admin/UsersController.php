@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -14,7 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::orderBy('id', 'desc')->paginate(20);
+        return view('admin.user.index', ['users' => $users]);
     }
 
     /**
@@ -24,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -44,9 +46,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('admin.user.show', ['user' => $user]);
     }
 
     /**
@@ -78,8 +80,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success', 'Пользователь удален');
     }
 }

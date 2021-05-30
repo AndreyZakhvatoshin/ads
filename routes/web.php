@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,24 +17,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/cabinet', [App\Http\Controllers\Cabinet\HomeController::class, 'index'])->name('cabinet');
-
+Route::get('/cabinet', [App\Http\Controllers\Cabinet\HomeController::class, 'index'])->name('cabinet')->middleware('verified');
 
 
 Route::group(
     [
         'prefix' => 'admin',
-        'namespace' => 'Admin',
         'as' => 'admin.',
-        'middleware' => ['auth']
+        'middleware' => ['auth'],
     ],
     function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
-
-        Route::resource('users', 'UsersController');
+        Route::resource('users', UsersController::class);
     }
 );

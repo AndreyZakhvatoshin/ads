@@ -6,19 +6,23 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-a {
-    color: #fffe;
+.nav-link {
+    color: $black;
 }
-
+.navbar-brand {
+    color: whitesmoke;
+}
 .breadcrumb {
-    background-color: #ffffff;
+    background-color: rgba($color: #5e99e6, $alpha: 0.2)
 }
 .breadcrumb-item a {
     color: black;
 }
 .breadcrumb-item.active {
-    color: $orange;
+    color: black;
+}
+.alert-error {
+    background-color: rgba($red, 0.3);
 }
 body {
     background: #ffffff;
@@ -31,4 +35,13 @@ body {
 }
 .app-content {
     flex: 1;
+}
+.link {
+    color: black;
+}
+.card {
+    box-shadow: 0 0 1rem rgb(109, 106, 106);
+}
+.footer-container {
+    text-align: center;
 }

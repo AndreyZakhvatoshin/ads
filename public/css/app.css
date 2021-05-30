@@ -10002,12 +10002,16 @@ h3 {
     border-color: #dee2e6;
   }
 }
-a {
-  color: #fffe;
+.nav-link {
+  color: #000;
+}
+
+.navbar-brand {
+  color: whitesmoke;
 }
 
 .breadcrumb {
-  background-color: #ffffff;
+  background-color: rgba(94, 153, 230, 0.2);
 }
 
 .breadcrumb-item a {
@@ -10015,7 +10019,11 @@ a {
 }
 
 .breadcrumb-item.active {
-  color: #f6993f;
+  color: black;
+}
+
+.alert-error {
+  background-color: rgba(227, 52, 47, 0.3);
 }
 
 body {
@@ -10031,4 +10039,16 @@ body {
 
 .app-content {
   flex: 1;
+}
+
+.link {
+  color: black;
+}
+
+.card {
+  box-shadow: 0 0 1rem #6d6a6a;
+}
+
+.footer-container {
+  text-align: center;
 }
