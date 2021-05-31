@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,5 +65,10 @@ class User extends Authenticatable implements MustVerifyEmail
             self::ROLE_USER => 'Пользователь',
             self::ROLE_ADMIN => 'Администратор',
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN ? true : false;
     }
 }
