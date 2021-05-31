@@ -10,5 +10,29 @@
                 <button class="btn btn-danger">Удалить</button>
             </form>
         </div>
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <th>ID</th><td>{{ $user->id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th><td>{{ $user->name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th><td>{{ $user->email }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>
+                    @if ($user->isAdmin())
+                        <span class="badge badge-danger">Admin</span>
+                    @else
+                        <span class="badge badge-secondary">User</span>
+                    @endif
+                </td>
+            </tr>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 @endsection

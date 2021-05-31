@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('admin.user._nav')
+@include('admin.users._nav')
 <form method="POST" action="{{ route('admin.users.store') }}">
     @csrf
     <div class="mb-3">
