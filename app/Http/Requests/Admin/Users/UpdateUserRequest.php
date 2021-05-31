@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin\Users;
 
+use App\Models\User;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserRequest extends FormRequest
@@ -13,7 +15,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,9 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255|unique:users,id,' . $this->user->id,
+            'role' => ['required', 'string', Rule::in([User::ROLE_ADMIN, User::ROLE_USER])],
         ];
     }
 }
