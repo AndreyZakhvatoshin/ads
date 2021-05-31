@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Users\UpdateUserRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Crypt;
@@ -65,14 +66,10 @@ class UsersController extends Controller
     }
 
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,id,' . $user->id,
-            'role' => ['required', 'string', Rule::in([User::ROLE_ADMIN, User::ROLE_USER])],
-        ]);
-        $user->update($data);
+
+        $user->update($request->only(['name', 'email', 'password']));
         return redirect()->route('admin.users.show', $user);
     }
 
