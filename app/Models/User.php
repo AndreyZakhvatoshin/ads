@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -28,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
+        'email_verified_at',
     ];
 
     /**
@@ -49,15 +49,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public static function new($name, $email): self
-    {
-        return static::create([
-            'name' => $name,
-            'email' => $email,
-            'password' => bcrypt('password'),
-            'role' => self::ROLE_USER,
-        ]);
-    }
 
     public static function getRoles()
     {
@@ -70,5 +61,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN ? true : false;
+    }
+
+    public function isVerify(): bool
+    {
+        return $this->email_verified_at == null ? false : true;
     }
 }
