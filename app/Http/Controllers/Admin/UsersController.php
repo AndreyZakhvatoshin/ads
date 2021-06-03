@@ -85,4 +85,10 @@ class UsersController extends Controller
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', "Пользователь {$user->name} удален");
     }
+
+    public function verifyUser(User $user)
+    {
+        $user->update(['email_verified_at' => Carbon::now()->format('Y-m-d H:i:s')]);
+        return redirect()->route('admin.users.show', $user);
+    }
 }
