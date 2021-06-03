@@ -33,5 +33,6 @@ Route::group(
     function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::resource('users', UsersController::class);
+        Route::post('users/{user}/verify', [UsersController::class, 'verifyUser'])->name('users.verify');
     }
 );
