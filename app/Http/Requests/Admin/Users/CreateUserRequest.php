@@ -16,6 +16,13 @@ class CreateUserRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'password' => 'secret',
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
