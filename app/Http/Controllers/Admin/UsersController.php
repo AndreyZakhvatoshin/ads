@@ -44,7 +44,11 @@ class UsersController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $user = User::new($request['name'], $request['email']);
+        // if (!$request->input('password')) {
+        //     $request['password'] = 'secret';
+        // }
+
+        $user = User::create($request->only('name', 'email', 'role', 'password'));
         return redirect()->route('admin.users.index')->with('success', 'Пользователь добавлен');
     }
 
