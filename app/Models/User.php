@@ -67,4 +67,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->email_verified_at == null ? false : true;
     }
+
+    public function changeRole(string $role)
+    {
+        if (!array_key_exists($role, $this->getRoles())) {
+            throw new \InvalidArgumentException("Указанной роли '{$role}' не существует");
+        }
+        if ($this->role === $role) {
+            throw new \DomainException('role already exist');
+        }
+        $this->update(['role' => $role]);
+    }
 }
