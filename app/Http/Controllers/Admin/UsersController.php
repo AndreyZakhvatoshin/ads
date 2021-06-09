@@ -27,7 +27,7 @@ class UsersController extends Controller
             $query->where('id', $value);
         }
         if (!empty($value = $request->get('name'))) {
-            $query->where('name', $value);
+            $query->where('name', 'LIKE', '%' . $value . '%');
         }
         if (!empty($value = $request->get('email'))) {
             $query->where('email', $value);
