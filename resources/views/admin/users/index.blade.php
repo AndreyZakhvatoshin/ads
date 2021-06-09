@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="name" class="col-form-label">Name</label>
+                        <label for="name" class="col-form-label">Имя</label>
                         <input id="name" class="form-control" name="name" value="{{ request('name') }}">
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label class="col-form-label">&nbsp;</label><br />
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary">Найти</button>
                     </div>
                 </div>
             </div>
