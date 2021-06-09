@@ -30,6 +30,10 @@ body {
     min-height: 100vh;
     flex-direction: column;
 }
+.role-select {
+    display: flex;
+    flex-direction: column;
+}
 .navbar {
     background: $blue;
 }
