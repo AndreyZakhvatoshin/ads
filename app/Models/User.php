@@ -53,8 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function getRoles()
     {
         return [
-            self::ROLE_USER => 'Пользователь',
-            self::ROLE_ADMIN => 'Администратор',
+            self::ROLE_USER => 'user',
+            self::ROLE_ADMIN => 'admin',
         ];
     }
 
