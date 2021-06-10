@@ -23,7 +23,7 @@ class RegionFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->city,
-            'slug' => $this->faker->unique()->slug(),
+            'slug' => $this->faker->unique()->slug(2),
             'parent_id' => null
         ];
     }
