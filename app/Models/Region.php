@@ -19,7 +19,7 @@ class Region extends Model
         'name', 'slug', 'parent_id'
     ];
 
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function parent()
     {
