@@ -27,19 +27,20 @@
                         <div class="role-select">
                             <label for="role" class="col-form-label">Роль</label>
                         </div>
-
-                        <select id="role" class="form-select" name="role">
+                        <select id="role" class="form-select form-control" name="role">
                             <option value=""></option>
                             @foreach ($roles as $value => $label)
                                 <option value="{{ $value }}"{{ $value === request('role') ? ' selected' : '' }}>{{ $label }}</option>
                             @endforeach;
                         </select>
                     </div>
+
+
                 </div>
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label class="col-form-label">&nbsp;</label><br />
-                        <button type="submit" class="btn btn-primary">Найти</button>
+                        <button type="submit" class="btn btn-primary btn-block">Найти</button>
                     </div>
                 </div>
             </div>
