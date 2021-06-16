@@ -14,10 +14,6 @@ class RegionsTableSeeder extends Seeder
      */
     public function run()
     {
-        Region::factory(10)->create()->each(function (Region $region) {
-            $region->children()->saveMany(Region::factory(random_int(3, 10)))->create()->each(function (Region $region) {
-                $region->children()->saveMany(Region::factory(random_int(3, 10)))->create();
-            });
-        });
+        Region::factory(10)->create();
     }
 }
