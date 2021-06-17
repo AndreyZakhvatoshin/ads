@@ -22,7 +22,7 @@ class RegionFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->city,
+            'name' => $this->faker->unique()->state,
             'slug' => $this->faker->unique()->slug(2),
         ];
     }
