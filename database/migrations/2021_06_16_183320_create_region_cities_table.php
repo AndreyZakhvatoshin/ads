@@ -14,8 +14,10 @@ class CreateRegionCitiesTable extends Migration
     public function up()
     {
         Schema::create('region_cities', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->integer('region_id')->unsigned()->index();
+            $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
+            $table->integer('city_id')->unsigned()->index();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 
