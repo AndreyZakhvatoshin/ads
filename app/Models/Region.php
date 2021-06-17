@@ -16,7 +16,7 @@ class Region extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'slug', 'parent_id'
+        'name', 'slug'
     ];
 
     public $timestamps = false;
