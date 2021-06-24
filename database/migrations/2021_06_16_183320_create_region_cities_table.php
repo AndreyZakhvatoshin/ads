@@ -28,6 +28,8 @@ class CreateRegionCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('region_cities');
+        Schema::table('cities', function (Blueprint $table) {
+            $table->dropColumn('region_id');
+        });
     }
 }
