@@ -42,3 +42,7 @@ Breadcrumbs::for('verification.notice', function ($trail) {
     $trail->parent('home');
     $trail->push('Подтвердите email', route('verification.notice'));
 });
+Breadcrumbs::for('admin.regions.index', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Регионы', route('admin.regions.index'));
+});
