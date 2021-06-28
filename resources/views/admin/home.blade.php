@@ -10,6 +10,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.regions.index') }}">Регионы</a>
+                </li>
             </ul>
         </div>
     </div>
