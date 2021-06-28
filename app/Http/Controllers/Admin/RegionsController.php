@@ -15,8 +15,8 @@ class RegionsController extends Controller
      */
     public function index()
     {
-        $regions = Region::paginate(20);
-        dd($regions);
+        $regions = Region::paginate(10);
+        return view('admin.regions.index', compact('regions'));
     }
 
     /**
