@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\RegionsController;
 use App\Http\Controllers\Admin\UsersController;
 
 /*
@@ -33,6 +34,7 @@ Route::group(
     function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::resource('users', UsersController::class);
+        Route::resource('regions', RegionsController::class);
         Route::post('users/{user}/verify', [UsersController::class, 'verifyUser'])->name('users.verify');
     }
 );
